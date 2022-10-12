@@ -34,12 +34,19 @@ export default function Create() {
     const updateSocials = (value) => {
         //const {name, value} = e.target
         return setForm(prev => {
+            // return {...prev, socials: JSON.stringify({...JSON.parse(prev.socials), ...value})}
             return {...prev, socials: {...prev.socials, ...value}} //using spread to get previous and new or set state/value
         })
     }
 
     const handlePhoto = (e) => {
         setForm({...form, photo: e.target.files[0]})
+    }
+
+    const formData  = new FormData();
+
+    for(const prop in form) {
+        formData.append(prop, prop !== 'socials' ? form[prop]: JSON.stringify(form[prop]));
     }
 
     async function onSubmit(e) {
@@ -50,10 +57,7 @@ export default function Create() {
 
         await fetch('http://localhost:7000/record/add', {
             method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newPerson)
+            body: formData
         })
         .catch(error => {
             window.alert(error)

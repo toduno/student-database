@@ -21,22 +21,20 @@ const getRecordById = async(req, res) => {
 }
 
 const createRecord =  async(req, res) => {
+    const socials = JSON.parse(req.body.socials)
+    console.log(socials, 'THIS IS THE BODY')
+
     const newRecord = new studentRecordModel({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        // socials: {
-        //     facebook: req.body.socials.facebook,
-        //     twitter: req.body.socials.twitter,
-        //     instagram: req.body.socials.instagram,
-        //     linkedin: req.body.socials.linkedin
-        // },
+        socials,
         interest: req.body.interest,
         graduationYear: req.body.graduationYear
     })
-    // if(req.file) {
-    //     studentRecordModel.photo = req.body.photo
-    // }
+    if(req.file) {
+        newRecord.photo = req.file.filename
+    }
     try{
         const saveNewRecord = await newRecord.save()
         res.status(201).json(saveNewRecord)

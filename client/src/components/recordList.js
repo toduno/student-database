@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const Record = (props) => (
     <tr>
         <td>    
-            <img src={`../../../server/uploads/{props.record.photo}`} alt='user' width='40%'/>
+            <img src={`http://localhost:7000/uploads/${props.record.photo}`} alt='user' width='10%'/>
         </td>
         <td>{props.record.firstName}</td>
         <td>{props.record.lastName}</td>
