@@ -22,7 +22,6 @@ const getRecordById = async(req, res) => {
 
 const createRecord =  async(req, res) => {
     const socials = JSON.parse(req.body.socials)
-    console.log(socials, 'THIS IS THE BODY')
 
     const newRecord = new studentRecordModel({
         firstName: req.body.firstName,
@@ -52,7 +51,7 @@ const updateRecord = async(req, res) => {
             updateRecord.photo = req.file.filename
         }
         updateRecord.firstName = req.body.firstName
-        updateRecord.position = req.body.lastName
+        updateRecord.lastName = req.body.lastName
         updateRecord.email = req.body.email
         updateRecord.socials = {
                 facebook: socials.facebook,
