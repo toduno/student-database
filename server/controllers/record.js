@@ -44,17 +44,21 @@ const createRecord =  async(req, res) => {
 }
 
 const updateRecord = async(req, res) => {
+    const socials = JSON.parse(req.body.socials)
+    console.log(req.body)
     try{
         const updateRecord = await studentRecordModel.findById(req.params.id)
-        updateRecord.photo = req.file.photo
+        if(req.file) {
+            updateRecord.photo = req.file.filename
+        }
         updateRecord.firstName = req.body.firstName
         updateRecord.position = req.body.lastName
         updateRecord.email = req.body.email
         updateRecord.socials = {
-                facebook: req.body.socials.facebook,
-                twitter: req.body.socials.twitter,
-                instagram: req.body.socials.instagram,
-                linkedin: req.body.socials.linkedin
+                facebook: socials.facebook,
+                twitter: socials.twitter,
+                instagram: socials.instagram,
+                linkedin: socials.linkedin
         }
         updateRecord.interest = req.body.interest
         updateRecord.graduationYear = req.body.graduationYear

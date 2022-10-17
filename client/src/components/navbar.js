@@ -7,21 +7,19 @@ import { NavLink } from 'react-router-dom';
 
 export default function Navbar() {
     return (
-        <div>
-            <nav>
-                <NavLink to='/'></NavLink>
-                <button>
-                    <span></span>
-                </button>
-
+        <header className='bg-white z-30 sticky top-0 right-0'>
+            <nav className='p-2 md:p-3'>
                 <div>
-                    <ul>
-                        <li>
+                    <ul className='flex justify-between items-center'>
+                 <li className='font-semibold hover:text-lg md:text-lg hover:text-xl  hover:text-blue-700 visited:text-purple-600 active:text-red-600'>
+                         <NavLink to='/'>Home</NavLink>
+                        </li>
+                        <li className='font-semibold hover:text-lg md:text-lg hover:text-xl  hover:text-blue-700 visited:text-purple-600 active:text-red-600'>
                             <NavLink to='/create'>Create Record</NavLink>
                         </li>
                     </ul>
                 </div>
             </nav>
-        </div>
+        </header>
     )
 }
