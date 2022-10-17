@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function Navbar() {
     return (
-        <header className='bg-white z-30 sticky top-0 right-0'>
+        <header className='bg-white z-30 sticky top-0 right-0 shadow-lg'>
             <nav className='p-2 md:p-3'>
                 <div>
                     <ul className='flex justify-between items-center'>
