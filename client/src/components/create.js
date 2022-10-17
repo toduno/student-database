@@ -34,7 +34,6 @@ export default function Create() {
     const updateSocials = (value) => {
         //const {name, value} = e.target
         return setForm(prev => {
-            // return {...prev, socials: JSON.stringify({...JSON.parse(prev.socials), ...value})}
             return {...prev, socials: {...prev.socials, ...value}} //using spread to get previous and new or set state/value
         })
     }

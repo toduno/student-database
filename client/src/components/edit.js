@@ -85,12 +85,15 @@ export default function Edit() {
             graduationYear: form.graduationYear
         }
 
+        const formData  = new FormData();
+
+        for(const prop in form) {
+            formData.append(prop, prop !== 'socials' ? form[prop]: JSON.stringify(form[prop]));
+        }
+
         await fetch(`http://localhost:7000/update/${params.id}`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(editedPerson)
+            method: 'PUT',
+            body: formData
         })
         
         console.log(editedPerson) 
@@ -144,7 +147,7 @@ export default function Edit() {
                     <input type='text' id='interest' value={form.interest} onChange={(e) => updateForm({interest: e.target.value})} />
                 </div>
 
-                 <div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                 <div>                                                                                                                           
                     <label htmlFor='year'>Graduation year</label>
                     <input type='number' id='year' value={form.graduationYear} onChange={(e) => updateForm({graduationYear: e.target.value})} />
                 </div>
