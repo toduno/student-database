@@ -95,8 +95,7 @@ export default function Edit() {
 
         await fetch(`http://localhost:7000/update/${params.id}`, {
             method: 'PUT',
-            body: JSON.Stringify(editedPerson)
-            //body: formData
+            body: formData
             })
 
         console.log(editedPerson)

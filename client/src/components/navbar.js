@@ -3,6 +3,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Modal from '../modal/modal';
 
 
 export default function Navbar() {
@@ -11,12 +12,13 @@ export default function Navbar() {
             <nav className='p-2 md:p-3'>
                 <div>
                     <ul className='flex justify-between items-center'>
-                 <li className='font-semibold hover:text-lg md:text-lg hover:text-xl  hover:text-blue-700 visited:text-purple-600 active:text-red-600'>
+                        <li className='font-semibold  hover:text-blue-700 visited:text-purple-600 active:text-red-600'>
                          <NavLink to='/'>Home</NavLink>
                         </li>
-                        <li className='font-semibold hover:text-lg md:text-lg hover:text-xl  hover:text-blue-700 visited:text-purple-600 active:text-red-600'>
+                        <li className='font-semibold  hover:text-blue-700 visited:text-purple-600 active:text-red-600'>
                             <NavLink to='/create'>Create Record</NavLink>
                         </li>
+                        <Modal />
                     </ul>
                 </div>
             </nav>

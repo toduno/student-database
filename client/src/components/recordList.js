@@ -43,12 +43,17 @@ const Record = (props) => {
                 <div onClick={onClick} >
                     <button className='mb-2 font-semibold hover:text-blue-600 visited:text-red-700 border-[1px] border-b-0 border-blue-600 px-2 pb-0 shadow-inner'>{btnText}</button> 
                     {show ?
-                    <ul className='sticky top-0'>
-                        <li className='block'><FaFacebookF className='inline text-blue-800'/>: {props.record.socials.facebook}</li>
-                        <li className='block'><FaTwitter className='inline text-blue-800'/>: {props.record.socials.twitter}</li>
-                        <li className='block'><FaInstagram className='inline text-red-800'/>: {props.record.socials.instagram}</li>
-                        <li className='block'><FaLinkedin className='inline text-blue-800'/>: {props.record.socials.linkedin}</li>
-                    </ul> : false }
+                    <div className='fixed inset-0 overflow-y-auto'>
+                       <div className='flex justify-center items-center min-h-screen'>
+                            <ul className='relative left-48 shadow-md'>
+                                <li className='block'><FaFacebookF className='inline text-blue-800'/>: {props.record.socials.facebook}</li>
+                                <li className='block'><FaTwitter className='inline text-blue-800'/>: {props.record.socials.twitter}</li>
+                                <li className='block'><FaInstagram className='inline text-red-800'/>: {props.record.socials.instagram}</li>
+                                <li className='block'><FaLinkedin className='inline text-blue-800'/>: {props.record.socials.linkedin}</li>
+                            </ul> 
+                        </div>
+                    </div>
+                    : false }
                 </div>
             </td>
             <td className='px-4 py-1 md:py-2'>{props.record.interest}</td>
