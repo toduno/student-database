@@ -17,6 +17,9 @@ export default function SignUp({setOpenModal}) {
         password: '',
         confirmPassword: ''
     })
+    //const [isSignup, setisSignup] = useState(false)
+    //const isSignup = true
+
     const [errorMessage, setErrorMessage] = useState('')
 
     const navigate = useNavigate()

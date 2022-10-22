@@ -12,6 +12,7 @@ export default function Navbar() {
 
     const navigate = useNavigate()
     const [username, setUsername] = useState(null)
+    const [userImage, setUserImage] = useState(null)
 
 
     async function logout() {
@@ -26,7 +27,7 @@ export default function Navbar() {
             }
         })
         .then(res => res.json())
-        .then(data => data.isLoggedIn ? setUsername(data.username) : null)
+        .then(data => data.isLoggedIn ? setUsername(data.username) && setUserImage(data.photo) : null)
         .catch(err => alert(err))
     }, [])
 
@@ -66,7 +67,10 @@ export default function Navbar() {
                         
                          {username
                             ? <ul className='flex'>
-                                <NavLink to={'/u/' + username}>Profile</NavLink>
+                                <NavLink to={'/u/' + username}>
+                                    <img src={userImage} alt={username} />
+                                    <span>{username}</span>
+                                </NavLink>
                                 <li className='p-2 md:p-3 hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400 visited:text-purple-600 active:text-red-600'>
                                     <NavLink to='/create'>Create Record</NavLink>
                                 </li>
