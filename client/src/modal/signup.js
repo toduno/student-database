@@ -33,18 +33,24 @@ export default function SignUp({setOpenModal}) {
     }
 
     async function onSubmit(e) {
+        console.log(form, 'this is the form')
         e.preventDefault()
 
-        const formData = {...form}
+        const formData  = new FormData();
+        for(const prop in form) {
+            formData.append(prop, form[prop]);
+        }
 
         try{
             const res =  await fetch(`http://localhost:7000/register`, {
                  method: 'POST',
-                 body: JSON.Stringify(formData)
+                 body: formData
              })
+
              const data = await res.json()
              localStorage.setItem('token', data.token)
              setErrorMessage(data.message)
+
          } catch(err) {
              setErrorMessage(err)
          }

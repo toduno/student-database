@@ -25,15 +25,15 @@ export default function SignIn() {
     async function onSubmit(e) {
         e.preventDefault()
 
-        const formData = {...form}
+        const loginData = {...form}
 
         try{
            const res =  await fetch(`http://localhost:7000/login`, {
                 method: 'POST',
                 headers: {
-                    "Content-type": "application/json"
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.Stringify(formData)
+                body: JSON.stringify(loginData)
             })
             const data = await res.json()
             localStorage.setItem('token', data.token)

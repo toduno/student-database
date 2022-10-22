@@ -40,9 +40,9 @@
 //     //stringify (as json when sending to the server) unless the property is an object e.g socials property is an 
 //     //object so it'll be stringified only
 //     const formData  = new FormData();
-//     for(const prop in form) {
-//         formData.append(prop, prop !== 'socials' ? form[prop]: JSON.stringify(form[prop]));
-//     }
+    // for(const prop in form) {
+    //     formData.append(prop, prop !== 'socials' ? form[prop]: JSON.stringify(form[prop]));
+    // }
 //     async function onSubmit(e) {
 //         e.preventDefault()
 
