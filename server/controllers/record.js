@@ -77,6 +77,7 @@ const deleteRecord = async(req, res) => {
     }
 }
 
+
 module.exports = {
     getRecord,
     getRecordById,

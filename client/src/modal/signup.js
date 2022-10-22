@@ -1,17 +1,25 @@
 
-import React, { useState } from 'react';
-//import { useParams } from 'react-router'; 
+import React, { useState, useLayoutEffect } from 'react';
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router';
+import ValidationError from '../components/validationError'
+
 
 
 export default function SignUp({setOpenModal}) {
+    const [showModal, setShowModal] = useState(false);
     const [form, setForm] = useState({
         photo: '',
         firstName: '',
         lastName: '',
+        username: '',
         email: '',
         password: '',
         confirmPassword: ''
     })
+    const [errorMessage, setErrorMessage] = useState('')
+
+    const navigate = useNavigate()
 
 
     const updateForm = (value) => {
@@ -29,25 +37,49 @@ export default function SignUp({setOpenModal}) {
 
         const formData = {...form}
 
-        await fetch(`http://localhost:7000/record/admin`, {
-            method: 'POST',
-            body: JSON.Stringify(formData)
-            })
+        try{
+            const res =  await fetch(`http://localhost:7000/register`, {
+                 method: 'POST',
+                 body: JSON.Stringify(formData)
+             })
+             const data = await res.json()
+             localStorage.setItem('token', data.token)
+             setErrorMessage(data.message)
+         } catch(err) {
+             setErrorMessage(err)
+         }
 
-        console.log(formData)
     }
+
+    useLayoutEffect(() => {
+        fetch('http://localhost:7000/isUserAuth', {
+            headers: {
+                'x-access-token': localStorage.getItem('token')
+            }
+        })
+        .then(res => res.json())
+        .then(data => data.isLoggedIn ? navigate('/')  : null)  // or ('/dashboard')
+        .catch(err => setErrorMessage(err))
+        
+     }, [navigate])
 
 
     return (
+        <div >
+            <button onClick={() => setShowModal(true)} className='p-2 md:p-3 hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400'>
+                Register
+            </button>
+
+            {showModal ? (
                 <>
                     <div className='fixed inset-0 z-10 overflow-y-auto '>
                         {/* <div onClick={() =>setShowModal(false)} className='fixed inset-0 w-full h-full bg-black opacity-40'></div> */}
                         
-                        <div className='flex justify-center items-center min-h-screen'>
+                        <div className='flex justify-center items-center  min-h-screen'>
                             <div clssName='relative w-full max-w-lg p-4 mx-auto'>
                                 <div className='-mt-8 md:mt-10 sm:flex bg-white rounded-lg shadow-2xl'> 
                                 
-                                  <div className='mt-2 px-5 md:px-6 py-7 pt-5 md:pt-1 md:pb-8 md:mt-0'>
+                                  <div className='mt-2 px-4 md:px-5 py-3 pb-2 pt-5 md:pt-1 md:mt-0 '>
                                         <div className='self-start border-b-[1px] mb-4'>
                                             <h3 className='font-bold text-2xl md:text-3xl md:mt-4'>Sign Up</h3>
                                             <p className='text-gray-500 mt-3 mb-4'>Please fill in this form to create an account!</p>
@@ -69,6 +101,12 @@ export default function SignUp({setOpenModal}) {
                                             </div>
 
                                             <div>
+                                                <label htmlFor='username'>Username</label>
+                                                <input placeholder='ex: johnny' type='text' id='username' value={form.username} onChange={(e) => updateForm({username: e.target.value})} 
+                                                    className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
+                                            </div>
+
+                                            <div>
                                                 <label htmlFor='email'>Email Address</label>
                                                 <input placeholder='ex: email@address.com' type='email' id='email' value={form.email} onChange={(e) => updateForm({email: e.target.value})} 
                                                     className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
@@ -76,13 +114,13 @@ export default function SignUp({setOpenModal}) {
 
                                             <div>
                                                 <label htmlFor='password'>Password</label>
-                                                <input type='text' id='password' value={form.password} onChange={(e) => updateForm({interest: e.target.value})} 
+                                                <input type='password' id='password' value={form.password} onChange={(e) => updateForm({password: e.target.value})} 
                                                     className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
                                             </div>
 
                                             <div>
                                                 <label htmlFor='confirmPassword'>Confirm Password</label>
-                                                <input type='number' id='confirmPassword' value={form.confirmPassword} onChange={(e) => updateForm({graduationYear: e.target.value})} 
+                                                <input type='password' id='confirmPassword' value={form.confirmPassword} onChange={(e) => updateForm({confirmPassword: e.target.value})} 
                                                     className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
                                             </div>
 
@@ -98,20 +136,30 @@ export default function SignUp({setOpenModal}) {
                                                 </div>
                                                 <div>
                                                     <button className='md:mt-2 font-semibold bg-red-700 hover:bg-red-600 px-12 md:px-16 py-2 text-white'
-                                                        onClick={() => setOpenModal(false)}>
+                                                        onClick={() => setShowModal(false)}>
                                                         Cancel
                                                     </button>
                                                 </div>
                                             </div>
+
+                                            <div className='flex'>
+                                                <span>Already have an account?</span>
+                                                <Link onClick={()=> setShowModal(false)} to='/login' className='font-semibold ml-2 text-blue-700 hover:text-blue-500 visited:text-purple-700 active:text-red-700'>Login</Link>
+                                            </div>
+
+                                            {errorMessage === 'Success' ? navigate('/') : <ValidationError message={errorMessage} />}
                                         </form>
                                     </div> 
                                 </div>
                             </div>
                         </div>
                     </div>
-                </>
-          
-             )
+                 </>
+            ) : null}
+            
+        </div>     
+    )
+
 }
 
 

@@ -134,20 +134,20 @@ export default function Edit() {
                         <div className='w-full'>                           
                             <label htmlFor='fname'>First Name</label>
                             <input placeholder='Enter your first name' type='text' id='fname' value={form.firstName} onChange={(e) => updateForm({firstName: e.target.value})} 
-                                className='mt-1 bg-gray-100 hover:bg-red-100 py-1 px-2 md:py-2 w-full block rounded'/>
+                                className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 w-full block rounded'/>
                         </div>
 
                         <div className='w-full'>
                             <label htmlFor='lname'>Last Name</label>
                             <input placeholder='Enter your surname' type='text' id='lname' value={form.lastName} onChange={(e) => updateForm({lastName: e.target.value})} 
-                                className='mt-1 bg-gray-100 hover:bg-red-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
+                                className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
                         </div>
                     </div>
 
                     <div>
                         <label htmlFor='email'>Email Address</label>
                         <input placeholder='ex: email@address.com' type='email' id='email' value={form.email} onChange={(e) => updateForm({email: e.target.value})} 
-                            className='mt-1 bg-gray-100 hover:bg-red-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
+                            className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
                     </div>
 
                     <div>
@@ -156,24 +156,24 @@ export default function Edit() {
                             <div className='w-full'>
                                 <div className='w-full mb-2'>
                                     <input placeholder='https://www.facebook.com/user' type='text' id='facebook' value={facebook} onChange={(e) => updateSocials({facebook: e.target.value})} 
-                                        className='bg-gray-100 hover:bg-red-100 py-1 px-2 md:py-2 w-full block rounded-sm'/>
+                                        className='bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 w-full block rounded-sm'/>
                                     <label htmlFor='facebook' className='text-xs text-slate-600'>Facebook</label>
                                 </div>
                                 <div className='w-full'>
                                     <input placeholder='https://www.twitter.com/user' type='text' id='twitter' value={twitter} onChange={(e) => updateSocials({twitter: e.target.value})} 
-                                        className='bg-gray-100 hover:bg-red-100 py-1 px-2 md:py-2 w-full block rounded-sm'/>
+                                        className='bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 w-full block rounded-sm'/>
                                     <label htmlFor='twitter' className='text-xs text-slate-600'>Twitter</label>
                                 </div>
                             </div>
                             <div className='w-full'>
                                 <div className='w-full mb-2'>
                                     <input placeholder='https://www.instagram.com/user' type='text' id='instagram' value={instagram} onChange={(e) => updateSocials({instagram: e.target.value})} 
-                                        className='bg-gray-100 hover:bg-red-100 py-1 px-2 md:py-2 w-full block rounded-sm'/>
+                                        className='bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 w-full block rounded-sm'/>
                                     <label htmlFor='instagram' className='text-xs text-slate-600'>Instagram</label>
                                 </div>
                                 <div className='w-full'>
                                     <input placeholder='https://www.linkedin.com/user' type='text' id='linkedin' value={linkedin} onChange={(e) => updateSocials({linkedin: e.target.value})} 
-                                        className='bg-gray-100 hover:bg-red-100 py-1 px-2 md:py-2 w-full block rounded-sm'/>
+                                        className='bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 w-full block rounded-sm'/>
                                     <label htmlFor='linkedin' className='text-xs text-slate-600'>LinkedIn</label>
                                 </div>
                             </div>
@@ -183,13 +183,13 @@ export default function Edit() {
                     <div>
                         <label htmlFor='interest'>Interest</label>
                         <input placeholder='ex: DevOps' type='text' id='interest' value={form.interest} onChange={(e) => updateForm({interest: e.target.value})} 
-                            className='mt-1 bg-gray-100 hover:bg-red-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
+                            className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
                     </div>
 
                     <div>
                         <label htmlFor='year'>Graduation Year</label>
                         <input placeholder='ex: 2022' type='number' id='year' value={form.graduationYear} onChange={(e) => updateForm({graduationYear: e.target.value})} 
-                            className='mt-1 bg-gray-100 hover:bg-red-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
+                            className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
                     </div>
 
                     <div>
@@ -199,7 +199,7 @@ export default function Edit() {
                     </div>
 
                     <div>
-                        <input type='submit' value="Update student" className='md:mt-2 font-semibold bg-red-700 hover:bg-red-600 px-4 md:px-8 py-2 text-white' />
+                        <input type='submit' value="Update student" className='md:mt-2 mt-1 font-semibold bg-red-700 hover:bg-red-600 px-4 md:px-8 py-2 text-white' />
                     </div>
                 </form>
             </div>

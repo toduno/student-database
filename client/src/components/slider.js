@@ -1,40 +1,40 @@
-// import React from 'react'
-// import AwesomeSlider from 'react-awesome-slider'
-// import withAutoplay from 'react-awesome-slider/dist/autoplay'
-// import  AwesomeSliderStyles from 'react-awesome-slider/dist/styles.css'
+import React, {useRef} from 'react';
+import Autoplay from 'embla-carousel-autoplay';
+import { Carousel } from '@mantine/carousel';
+
+
+const Slider = () => {
+    const images = [
+    require('../images/students_09.jpg'),
+    require('../images/4119036.jpg'),
+    require('../images/5437683.jpg'),
+    require('../images/6463375.jpg')
+    ]
+
+    // const slides = images.map((img, index) => (
+    //     <Carousel.Slide key={index}>
+    //          <img alt='student' src={img}
+    //             className='w-full object-cover max-w-full' /> 
+    //     </Carousel.Slide>
+    // ))
+
+    const autoplay = useRef(Autoplay({delay: 4000}))
+
+    return (
+    <div className='py-5 mb-2 bg-white h-80 flex'>
+        <Carousel sx={{flex: 1}} mx='auto' withIndicators height='100%'
+           plugins={[autoplay.current]} onMouseEnter={autoplay.current.stop} onMouseLeave={autoplay.current.reset}
+        >
+            <Carousel.Slide style={{backgroundImage: `url(${images[0]})`}} className='bg-contain bg-no-repeat bg-center'></Carousel.Slide>
+            <Carousel.Slide style={{backgroundImage: `url(${images[1]})`}} className='bg-contain bg-no-repeat bg-center'></Carousel.Slide>
+            <Carousel.Slide style={{backgroundImage: `url(${images[2]})`}} className='bg-contain bg-no-repeat bg-center'></Carousel.Slide>
+            <Carousel.Slide style={{backgroundImage: `url(${images[3]})`}} className='bg-contain bg-no-repeat bg-center'></Carousel.Slide>    
+        </Carousel>
+    </div>
+    )
+}
 
 
 
 
-// const AutoplaySlider = withAutoplay(AwesomeSlider)
-
-// const Slider = () => {
-//     const images = [
-//     require('../images/students_09.jpg'),
-//     require('../images/4119036.jpg'),
-//     require('../images/5437683.jpg'),
-//     require('../images/6463375.jpg')
-//     ]
-
-//     return (
-//     <div className='md:w-[50%] sizeImg pt-5'>
-//         <AutoplaySlider
-//         play={true}
-//         cancelOnInteraction={false}
-//         interval={6000}
-//         cssModule={AwesomeSliderStyles}
-//         startupScreen={null}
-//         organicArrows={false}
-//         >
-//            {images.map((img, index) => <div key={index} alt='student' data-src={img}
-//             className='w-full object-cover max-w-full align-top' /> )} 
-//             {/* <div data-src={require("../images/students_09.jpg")} />    */}                
-//         </AutoplaySlider>
-//     </div>
-//     )
-// }
-
-
-
-
-//export default Slider
+export default Slider

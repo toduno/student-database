@@ -4,8 +4,7 @@
 
 // import React, { useState } from 'react';
 // import { useNavigate } from 'react-router'; 
-// //import StudentImage from '../images/students_09.jpg'
-// //import Slider from './slider'
+
 
 // export default function Create() {
 //     const [form, setForm] = useState({
@@ -80,9 +79,10 @@
 //     }
 
 //     const {socials: {facebook, twitter, instagram, linkedin}} = form
-//     //const socials = {...form.socials}
+
 
 //     return (
+//      <>
 //         <div className='flex flex-col md:flex-row'>
 //             <div className='flex md:flex-col md:w-[50%] md:h-screen justify-center items-center py-20 md:py-14  lg:py-20 bg-yellow-100 gap-y-3'>
 //                 <div className="w-auto m-auto h-full -rotate-2 z-20">
@@ -181,6 +181,7 @@
 //                     </div>
 //                 </form>
 //             </div>
-//         </div>
+//         </div> 
+//      </>
 //     )
 // }

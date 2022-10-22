@@ -9,7 +9,9 @@ const cors = require('cors')
 app.use(cors())
 app.use(express.json())
 app.use(require('./routes/record.js'))
+app.use(require('./routes/user.js'))
 app.use('/uploads', express.static('uploads'))
+// app.use('/middleware/verifyjwt', express.static('verifyjwt'))
 
 app.listen(port, () => {
     //perform a database connection when server starts
