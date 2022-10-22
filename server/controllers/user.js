@@ -32,11 +32,12 @@ const createUser =  async(req, res) => {
 }
 
 const userLogin = (req, res) => {
-    User.findOne({username: req.body.username})
+    const { username, password } = req.body;
+    User.findOne({username})
     .then(dbUser => {
         if (!dbUser) {
-            return res.json({
-                message: 'Invalid Username or Password'
+            return res.status(400).json({
+                message: `Invalid Username or Password ${username}`
             })
         }
         bcrypt.compare(req.body.password, dbUser.password)
@@ -58,11 +59,12 @@ const userLogin = (req, res) => {
                         })
                     }
                 )
-            } else {
-                return res.status(400).json({
-                    message: 'Invalid Username or Password'
-                })
             }
+        })
+        .catch(err => {
+            return res.status(400).json({
+                message: 'Invalid Username or Password'
+            })
         })
     })
 }
