@@ -17,8 +17,6 @@ export default function SignUp({setOpenModal}) {
         password: '',
         confirmPassword: ''
     })
-    //const [isSignup, setisSignup] = useState(false)
-    //const isSignup = true
 
     const [errorMessage, setErrorMessage] = useState('')
 
@@ -57,7 +55,7 @@ export default function SignUp({setOpenModal}) {
          } catch(err) {
              setErrorMessage(err)
          }
-
+         navigate('/')
     }
 
     useLayoutEffect(() => {
@@ -82,13 +80,13 @@ export default function SignUp({setOpenModal}) {
             {showModal ? (
                 <>
                     <div className='fixed inset-0 z-10 overflow-y-auto '>
-                        {/* <div onClick={() =>setShowModal(false)} className='fixed inset-0 w-full h-full bg-black opacity-40'></div> */}
+                        <div onClick={() =>setShowModal(false)} className='fixed inset-0 w-full h-full bg-black opacity-40'></div>
                         
                         <div className='flex justify-center items-center  min-h-screen'>
-                            <div clssName='relative w-full max-w-lg p-4 mx-auto'>
-                                <div className='-mt-8 md:mt-10 sm:flex bg-white rounded-lg shadow-2xl'> 
+                            <div className='relative w-full max-w-lg p-4 mx-auto '>
+                                <div className='mt-3 sm:flex bg-white rounded-md shadow-lg'> 
                                 
-                                  <div className='mt-2 px-4 md:px-5 py-3 pb-2 pt-5 md:pt-1 md:mt-0 '>
+                                  <div className='mt-2 px-4 md:px-5 py-3 pb-2 pt-5 md:pt-1 md:mt-0'>
                                         <div className='self-start border-b-[1px] mb-4'>
                                             <h3 className='font-bold text-2xl md:text-3xl md:mt-4'>Sign Up</h3>
                                             <p className='text-gray-500 mt-3 mb-4'>Please fill in this form to create an account!</p>

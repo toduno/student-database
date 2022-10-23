@@ -4,22 +4,22 @@
 
 
 // export default function Modal() {
-//     const [showModal, setShowModal] = useState(false)
-//     const [isSignupModalOpen, toggleSignupModal] = useState(false)
-//     const [isLoginModalOpen, toggleLoginModal] = useState(false)
+//     const [showModal, setShowModal] = (false)
+//     const [isSignup, toggleSignup] = useState(false)
+//     //const [isSignin, toggleSignin] = useState(false)
 
     
 //     return (
 //         <div >
 //             <button onClick={() => setShowModal(true)} className='p-2 md:p-3 hover:font-semibold hover:border-red-700 hover:border-b-4 hover:text-red-400'>
-//                 Create Account
+//                 Create
 //             </button>
 
 //             {showModal &&
-//                 <div className='flex gap-x-3'>
+//                 <div>
                     
-//                     <button onClick={() => toggleLoginModal(true)}>Sign In</button>
-//                      {isLoginModalOpen ? <SignIn setOpenModal={setShowModal} /> : null}
+//                     <button onClick={() => toggleSigninModal(true)}>Sign In</button>
+//                      {isSigninModalOpen ? <SignIn setOpenModal={setShowModal} /> : null}
                      
 //                      <button onClick={() => toggleSignupModal(true)}>Sign Up</button>
 //                      {isSignupModalOpen ? <SignUp setOpenModal={setShowModal} /> : null}

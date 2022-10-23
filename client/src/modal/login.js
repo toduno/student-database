@@ -41,6 +41,7 @@ export default function SignIn() {
         } catch(err) {
             setErrorMessage(err)
         }
+        //navigate('/')
     }
 
     useLayoutEffect(() => {
@@ -69,16 +70,16 @@ export default function SignIn() {
             {showModal ? (
                 <>
                     <div className='fixed inset-0 z-10 overflow-y-auto '>
-                        {/* <div onClick={() =>setShowModal(false)} className='fixed inset-0 w-full h-full bg-black opacity-40'></div> */}
+                        <div onClick={() =>setShowModal(false)} className='fixed inset-0 w-full h-full bg-black opacity-40'></div>
                         
                         <div className='flex justify-center items-center min-h-screen'>
-                            <div clssName='relative w-full max-w-lg p-4 mx-auto'>
-                                <div className='-mt-8 md:mt-10 sm:flex bg-white rounded-lg shadow-2xl'> 
+                            <div className='relative w-full max-w-lg p-4 mx-auto '>
+                            <div className='mt-3 sm:flex bg-white rounded-md shadow-lg'> 
                                 
-                                  <div className='mt-2 px-4 md:px-5 py-2 pt-5 md:pt-1 md:pb-2 md:mt-0'>
+                                  <div className='w-full mt-2 px-4 md:px-5 py-2 pt-5 md:pt-1 md:pb-2 md:mt-0'>
                                         <div className='self-start mb-4'>
                                             <h3 className='font-bold text-2xl md:text-3xl md:mt-4'>Sign In</h3>
-                                            <div className='flex items-center justify-center my-6 gap-x-7 bg-white'>
+                                            <div className='flex items-center justify-center my-6 gap-x-7'>
                                                 <span className='bg-black hover:bg-gray-700 p-3 rounded-full'><FaGithub className='text-center text-white' /></span>
                                                 <span className='bg-red-700 hover:bg-red-600 p-3 rounded-full'><FaGoogle className='text-center text-white' /></span>
                                                 <span className='bg-blue-700 hover:bg-blue-600 p-3 rounded-full'><FaFacebookF className='text-center text-white' /></span>

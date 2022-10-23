@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import SignUp from '../modal/signup';
 import SignIn from '../modal/login';
+import { FaBars }  from 'react-icons/fa';
 
 
 export default function Navbar() {
@@ -13,6 +14,7 @@ export default function Navbar() {
     const navigate = useNavigate()
     const [username, setUsername] = useState(null)
     const [userImage, setUserImage] = useState(null)
+    const [navbar, setNavbar] = useState(false)
 
 
     async function logout() {
@@ -33,7 +35,7 @@ export default function Navbar() {
 
 
     return (
-        <header className='bg-white z-30 sticky top-0 right-0 shadow-sm'>
+        <header className='w-full bg-white z-30 sticky top-0 right-0 shadow-sm'>
             {/* <nav>
                 <ul>
                     <li className='p-2 md:p-3 hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400 visited:text-purple-600 active:text-red-600'>
@@ -60,28 +62,53 @@ export default function Navbar() {
             </nav> */}
 
             <nav>
-                    <ul className='flex justify-between items-center'>
-                        <li className='p-2 md:p-3 hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400 visited:text-purple-600 active:text-red-600'>
-                         <NavLink to='/'>Home</NavLink>
-                        </li>
-                        
-                         {username
-                            ? <ul className='flex'>
-                                <NavLink to={'/u/' + username}>
-                                    <img src={userImage} alt={username} />
-                                    <span>{username}</span>
-                                </NavLink>
-                                <li className='p-2 md:p-3 hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400 visited:text-purple-600 active:text-red-600'>
-                                    <NavLink to='/create'>Create Record</NavLink>
-                                </li>
-                                <li className='p-2' onClick={logout}>Logout</li>
-                              </ul>
-                            : <ul className='flex'>
-                                <li><SignUp /></li>
-                                <li><SignIn /></li>
-                              </ul>
-                        }
-                    </ul>
+                <div className='justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex justify md:px-8'>
+                    <div>
+                        <div className='flex items-center justify-between md:block'>
+                            <NavLink to='/' className='font-bold text-2xl p-2 md:p-3text-red-800 hover:text-red-400 visited:text-purple-600 active:text-red-600'>
+                                    StudDB
+                            </NavLink>
+                            
+                            <div className='md:hidden'>
+                                <button onClick={() => setNavbar(!navbar)}
+                                    className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border">
+                                    {navbar ? (
+                                        <i className='w-6 h-6' >&times;</i>
+                                    ) : (
+                                        <FaBars className='w-6 h-6' />
+                                    )}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar?'block':'hidden'}`}>
+                            <ul className='items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0'> 
+                                    {username
+                                        ? <ul className='md:flex gap-y-3'>
+                                            <NavLink to={'/u/' + username}>
+                                                <img src={userImage} alt={username} />
+                                                <span>{username}</span>
+                                            </NavLink>
+                                            <li className='p-2 md:p-3 hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400 visited:text-red-600 active:text-red-600'>
+                                                <NavLink to='/create'>Create Record</NavLink>
+                                            </li>
+                                            <li className='p-2' onClick={logout}>Logout</li>
+                                        </ul>
+                                        : 
+                                        <div className='md:flex gap-x-6'>
+                                            <NavLink to='/'  className='p-2 md:p-3 text-black hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400 visited:text-black active:text-red-600'>
+                                                Home
+                                            </NavLink>
+                                            <SignUp className='inline'/>
+                                            <SignIn className='inline' />   
+                                        </div>
+                                    }
+                            </ul>
+                        </div>
+                    </div>
+                </div>   
             </nav>
         </header>
     )
