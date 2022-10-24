@@ -13,7 +13,7 @@ export default function Navbar() {
 
     const navigate = useNavigate()
     const [username, setUsername] = useState(null)
-    const [userImage, setUserImage] = useState(null)
+    //const [userImage, setUserImage] = useState(null)
     const [navbar, setNavbar] = useState(false)
 
 
@@ -29,7 +29,7 @@ export default function Navbar() {
             }
         })
         .then(res => res.json())
-        .then(data => data.isLoggedIn ? setUsername(data.username) && setUserImage(data.photo) : null)
+        .then(data => data.isLoggedIn ? setUsername(data.username) : null)
         .catch(err => alert(err))
     }, [])
 
@@ -65,7 +65,7 @@ export default function Navbar() {
                 <div className='justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex justify md:px-8'>
                     <div>
                         <div className='flex items-center justify-between md:block'>
-                            <NavLink to='/' className='font-bold text-2xl p-2 md:p-3text-red-800 hover:text-red-400 visited:text-purple-600 active:text-red-600'>
+                            <NavLink to='/' className='font-bold text-2xl p-2 md:p-3 text-red-500 hover:text-red-400 active:text-red-700'>
                                     StudDB
                             </NavLink>
                             
@@ -88,17 +88,17 @@ export default function Navbar() {
                                     {username
                                         ? <ul className='md:flex gap-y-3'>
                                             <NavLink to={'/u/' + username}>
-                                                <img src={userImage} alt={username} />
-                                                <span>{username}</span>
+                                                {/* <img src={userImage} alt={username} /> */}
+                                                <span className='text-2xl'>{username}</span>
                                             </NavLink>
-                                            <li className='p-2 md:p-3 hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400 visited:text-red-600 active:text-red-600'>
+                                            <li className='p-2 md:p-3 hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400 visited:text-purple-600 active:text-red-600'>
                                                 <NavLink to='/create'>Create Record</NavLink>
                                             </li>
                                             <li className='p-2' onClick={logout}>Logout</li>
                                         </ul>
                                         : 
-                                        <div className='md:flex gap-x-6'>
-                                            <NavLink to='/'  className='p-2 md:p-3 text-black hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400 visited:text-black active:text-red-600'>
+                                        <div className='flex flex-col  gap-y-6 md:flex-row md:items-center md:gap-x-7'>
+                                            <NavLink to='/'  className='p-2 md:p-3 hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400  active:text-red-600'>
                                                 Home
                                             </NavLink>
                                             <SignUp className='inline'/>
