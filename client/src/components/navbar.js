@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router';
 import SignUp from '../modal/signup';
 import SignIn from '../modal/login';
 import { FaBars }  from 'react-icons/fa';
+import { FaTimes }  from 'react-icons/fa';
 
 
 export default function Navbar() {
@@ -65,17 +66,17 @@ export default function Navbar() {
                 <div className='justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex justify md:px-8'>
                     <div>
                         <div className='flex items-center justify-between md:block'>
-                            <NavLink to='/' className='font-bold text-2xl p-2 md:p-3 text-red-500 hover:text-red-400 active:text-red-700'>
+                            <NavLink to='/' className='font-bold text-2xl py-2 md:py-3 text-red-500 hover:text-red-400 active:text-red-700'>
                                     StudDB
                             </NavLink>
                             
                             <div className='md:hidden'>
                                 <button onClick={() => setNavbar(!navbar)}
-                                    className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border">
+                                    className="p-1 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border">
                                     {navbar ? (
-                                        <i className='w-6 h-6' >&times;</i>
+                                        <FaTimes className='w-5 h-5' />
                                     ) : (
-                                        <FaBars className='w-6 h-6' />
+                                        <FaBars className='w-5 h-5' />
                                     )}
                                 </button>
                             </div>
@@ -83,7 +84,7 @@ export default function Navbar() {
                     </div>
 
                     <div>
-                        <div className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar?'block':'hidden'}`}>
+                        <div className={`flex-1 justify-self-center pb-3 mt-4 md:block md:pb-0 md:mt-0 ${navbar?'block':'hidden'}`}>
                             <ul className='items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0'> 
                                     {username
                                         ? <ul className='md:flex gap-y-3'>
@@ -97,8 +98,8 @@ export default function Navbar() {
                                             <li className='p-2' onClick={logout}>Logout</li>
                                         </ul>
                                         : 
-                                        <div className='flex flex-col  gap-y-6 md:flex-row md:items-center md:gap-x-7'>
-                                            <NavLink to='/'  className='p-2 md:p-3 hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400  active:text-red-600'>
+                                        <div className='flex flex-col gap-y-4 md:flex-row md:items-center md:gap-x-7'>
+                                            <NavLink to='/'  className='p-2 md:p-3 hover:font-semibold hover:text-red-400  active:text-red-600'>
                                                 Home
                                             </NavLink>
                                             <SignUp className='inline'/>

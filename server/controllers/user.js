@@ -10,7 +10,7 @@ const createUser =  async(req, res) => {
     if (takenUsername || takenEmail) {
         res.json({message: 'Username or email already exist!'})
     } else {
-        req.body.password = await bcrypt.hash(req.body.password, 10)
+        req.body.password = await bcrypt.hash(req.body.password, 12)
     
         const dbUser = new User({
             firstName: req.body.firstName,
@@ -22,9 +22,10 @@ const createUser =  async(req, res) => {
         if(req.file) {
             dbUser.photo = req.file.filename
         }
+
         try{
             const saveNewUser = await dbUser.save()
-            res.status(201).json(saveNewUser)
+            res.status(200).json(saveNewUser)  
         } catch(err) {
             res.status(400).json('Error: ' + err)
         }
@@ -49,11 +50,12 @@ const userLogin = (req, res) => {
                 }
                 jwt.sign(
                     payload,
-                    process.env.JWT_SECRET,
+                    // process.env.JWT_SECRET,
+                    'test',
                     {expiresIn: 86400},
                     (err, token) => {
-                        if (err) return res.json({message: err})
-                        return res.json({
+                        if (err) return res.status(400).json({message: err})
+                        return res.status(200).json({
                             message: 'Success',
                             token: "Bearer" + token
                         })
@@ -62,8 +64,8 @@ const userLogin = (req, res) => {
             }
         })
         .catch(err => {
-            return res.status(400).json({
-                message: 'Invalid Username or Password'
+            return res.status(500).json({
+                message: 'Something went wrong.'
             })
         })
     })

@@ -42,7 +42,6 @@ export default function SignIn() {
             setErrorMessage(err)
         }
 
-        setForm('/')
     }
 
     useLayoutEffect(() => {
@@ -53,7 +52,7 @@ export default function SignIn() {
                 }
             })
             .then(res => res.json())
-            .then(data => data.isLoggedIn ? navigate('/create') : null)  //.push('/dashboard')
+            .then(data => data.isLoggedIn ? navigate('/u/:userId') : null)  //.push('/dashboard')
             .catch(err => setErrorMessage(err))
        }
        authenticateUser()
@@ -64,7 +63,7 @@ export default function SignIn() {
 
     return (
         <div >
-            <button onClick={() => setShowModal(true)} className='p-2 md:p-3 hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400'>
+            <button onClick={() => setShowModal(true)} className='p-2 md:p-3 hover:font-semibold hover:text-red-400'>
                  Sign In
             </button>
 
@@ -119,7 +118,7 @@ export default function SignIn() {
                                                 <Link onClick={()=> setShowModal(false)} to='/signup' className='font-semibold ml-2 text-blue-700 hover:text-blue-500 visited:text-purple-700 active:text-red-700'>Sign Up</Link>
                                             </div>
 
-                                            {!errorMessage ? navigate('/create') : <ValidationError message={errorMessage} />}
+                                            {errorMessage === 'Success' ? navigate('/u/:userId') : <ValidationError message={errorMessage} />}
                                         </form>
                                     </div> 
                                 </div>

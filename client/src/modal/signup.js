@@ -56,7 +56,6 @@ export default function SignUp({setOpenModal}) {
              setErrorMessage(err)
          }
 
-         setForm('')
     }
 
     useLayoutEffect(() => {
@@ -66,7 +65,7 @@ export default function SignUp({setOpenModal}) {
             }
         })
         .then(res => res.json())
-        .then(data => data.isLoggedIn ? navigate('/create')  : null)  // or ('/dashboard')
+        .then(data => data.isLoggedIn ? navigate('/')  : null)  // or ('/dashboard')
         .catch(err => setErrorMessage(err))
         
      }, [navigate])
@@ -74,7 +73,7 @@ export default function SignUp({setOpenModal}) {
 
     return (
         <div >
-            <button onClick={() => setShowModal(true)} className='p-2 md:p-3 hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400'>
+            <button onClick={() => setShowModal(true)} className='p-2 md:p-3 hover:font-semibold hover:text-red-400'>
                 Register
             </button>
 
@@ -155,7 +154,7 @@ export default function SignUp({setOpenModal}) {
                                                 <Link onClick={()=> setShowModal(false)} to='/login' className='font-semibold ml-2 text-blue-700 hover:text-blue-500 visited:text-purple-700 active:text-red-700'>Login</Link>
                                             </div>
 
-                                            {!errorMessage ? navigate('/') : <ValidationError message={errorMessage} />}
+                                            {!errorMessage === 'Success' ? navigate('/') : <ValidationError message={errorMessage} />}
                                         </form>
                                     </div> 
                                 </div>

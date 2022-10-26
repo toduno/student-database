@@ -23,6 +23,7 @@ const verifyjwt = require('../middleware/verifyjwt')
 // router.put('/update/:id', upload.single('photo'), updateRecord)
 // router.delete('/:id', deleteRecord)
 
+
 router.post('/register', upload.single('photo'), createUser)
 router.post('/login', userLogin)
 router.get('/isUserAuth', verifyjwt, verifyJWT)

@@ -4,7 +4,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import SearchRecord from './search';
-import Slider from './slider'
 
 import { FaFacebookF } from 'react-icons/fa'
 import { FaTwitter } from 'react-icons/fa'
@@ -111,8 +110,6 @@ export default function RecordList() {
 
     return (
         <div>
-            <Slider />
-
             <h3 className="font-semibold text-2xl lg:text-3xl my-4 text-center">Students Record</h3>
 
             <SearchRecord records={records} setRecords={setRecords} />

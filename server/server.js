@@ -5,8 +5,14 @@ require('dotenv')
 const port = process.env.PORT || 7000
 
 const cors = require('cors')
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,
+    optionsSuccessStatus: 200
+}
 
-app.use(cors())
+
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use(require('./routes/record.js'))
 app.use(require('./routes/user.js'))
