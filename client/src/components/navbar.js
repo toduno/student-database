@@ -24,8 +24,10 @@ export default function Navbar() {
     }
 
     useLayoutEffect(() => {
-        fetch('http://localhost:7000/isUserAuth', {
+        fetch('http://localhost:7000/isuserauth', {
+            method: 'POST',
             headers: {
+                'Content-Type': 'application/json',
                 "x-access-token": localStorage.getItem('token')
             }
         })

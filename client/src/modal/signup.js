@@ -59,7 +59,9 @@ export default function SignUp() {
 
     useLayoutEffect(() => {
         fetch('http://localhost:7000/isUserAuth', {
+            method: 'POST',
             headers: {
+                'Content-Type': 'application/json',
                 'x-access-token': localStorage.getItem('token')
             }
         })
