@@ -27,6 +27,6 @@ const verifyjwt = require('../middleware/verifyjwt')
 
 router.post('/register', upload.single('photo'), createUser)
 router.post('/login', loginUser)
-router.get('/isUserAuth', verifyjwt, verifyJWT)
+router.post('/isUserAuth', verifyjwt, verifyJWT)
 router.get('/register', getUser)
 module.exports = router

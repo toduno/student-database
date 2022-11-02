@@ -42,6 +42,7 @@ const loginUser = (req, res) => {
     if(!req.body) return res.json({message: "Server Error"})
     
     const { username, password } = req.body;
+    console.log('LOGGING in NOW')
 
     //check if user's username exists
     User.findOne({username})
@@ -63,8 +64,8 @@ const loginUser = (req, res) => {
                 }
                 jwt.sign(
                     payload,
-                    process.env.PASSPORTSECRET,
-                    //'test',
+                    // process.env.PASSPORTSECRET,
+                    'test',
                     {expiresIn: 86400},
                     (err, token) => {
                         if (err) return res.status(400).json({message: err})
