@@ -23,6 +23,7 @@ export default function SignIn() {
     }
 
     async function onSubmit(e) {
+        console.log('Im logging in now')
         e.preventDefault()
 
         const loginData = {...form}
@@ -52,7 +53,8 @@ export default function SignIn() {
                 }
             })
             .then(res => res.json())
-            .then(data => data.isLoggedIn ? navigate('/u/:userId') : null)  //.push('/dashboard')
+            .then(data => data.isLoggedIn ? navigate('/dashboard') : null) 
+            .then(data => console.log(data))
             .catch(err => setErrorMessage(err))
        }
        authenticateUser()
@@ -64,7 +66,7 @@ export default function SignIn() {
     return (
         <div >
             <button onClick={() => setShowModal(true)} className='p-2 md:p-3 hover:font-semibold hover:text-red-400'>
-                 Sign In
+                 Log In
             </button>
 
             {showModal ? (
@@ -115,15 +117,15 @@ export default function SignIn() {
 
                                             <div className='flex'>
                                                 <span>Don't have an account?</span>
-                                                <Link onClick={()=> setShowModal(false)} to='/signup' className='font-semibold ml-2 text-blue-700 hover:text-blue-500 visited:text-purple-700 active:text-red-700'>Sign Up</Link>
+                                                <Link onClick={()=> setShowModal(false)} to='/signup' className='font-semibold ml-2 text-blue-700 hover:text-blue-500 visited:text-purple-700 active:text-red-700'>Register</Link>
                                             </div>
 
-                                            {errorMessage === 'Success' ? navigate('/u/:userId') : <ValidationError message={errorMessage} />}
+                                            {errorMessage === 'Success' ? navigate('/dashboard') : <ValidationError message={errorMessage} />}
                                         </form>
                                     </div> 
                                 </div>
                             </div>
-                        </div>
+                        </div>       
                     </div>
                 </>
             ) : null}

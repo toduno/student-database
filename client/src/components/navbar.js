@@ -90,7 +90,7 @@ export default function Navbar() {
                                         ? <ul className='md:flex gap-y-3'>
                                             <NavLink to={'/u/' + username}>
                                                 {/* <img src={userImage} alt={username} /> */}
-                                                <span className='text-2xl'>{username}</span>
+                                                <span className='text-2xl'>Profile</span>
                                             </NavLink>
                                             <li className='p-2 md:p-3 hover:font-semibold hover:border-red-700 hover:border-b-2 hover:text-red-400 visited:text-purple-600 active:text-red-600'>
                                                 <NavLink to='/create'>Create Record</NavLink>

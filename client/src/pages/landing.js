@@ -1,10 +1,10 @@
 import React from 'react'
-import Slider from './slider'
+import Slider from '../components/slider'
 import { FaUserCheck } from 'react-icons/fa'
 import { FaUserPlus } from 'react-icons/fa'
 import { FaRegChartBar } from 'react-icons/fa'
 
-export default function Home() {
+export default function LandingPage() {
     const cards = [
         {
             id: '01',

@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router';
 import ValidationError from '../components/validationError'
 
 
-
-export default function SignUp({setOpenModal}) {
+export default function SignUp() {
     const [showModal, setShowModal] = useState(false);
     const [form, setForm] = useState({
         photo: '',
@@ -49,7 +48,7 @@ export default function SignUp({setOpenModal}) {
              })
 
              const data = await res.json()
-             localStorage.setItem('token', data.token)
+             //localStorage.setItem('token', data.token)
              setErrorMessage(data.message)
 
          } catch(err) {
@@ -65,7 +64,7 @@ export default function SignUp({setOpenModal}) {
             }
         })
         .then(res => res.json())
-        .then(data => data.isLoggedIn ? navigate('/')  : null)  // or ('/dashboard')
+        .then(data => data.isLoggedIn ? navigate('/dashboard')  : null)  
         .catch(err => setErrorMessage(err))
         
      }, [navigate])
@@ -154,7 +153,7 @@ export default function SignUp({setOpenModal}) {
                                                 <Link onClick={()=> setShowModal(false)} to='/login' className='font-semibold ml-2 text-blue-700 hover:text-blue-500 visited:text-purple-700 active:text-red-700'>Login</Link>
                                             </div>
 
-                                            {!errorMessage === 'Success' ? navigate('/') : <ValidationError message={errorMessage} />}
+                                            {errorMessage === 'Success' ? navigate('/login') : <ValidationError message={errorMessage} />}
                                         </form>
                                     </div> 
                                 </div>
