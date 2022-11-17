@@ -8,12 +8,12 @@ import Footer from "./components/footer";
 
 import Dashboard from "./pages/dashboard"
 import Profile from "./pages/profile"
-//import RecordList from "./components/recordList";
-// import Edit from "./components/edit";
-// import Create from "./components/create";
+import RecordList from "./components/recordList";
+import Edit from "./pages/edit";
+import Create from "./pages/create";
 
-import SignUp from './modal/signup';
-import SignIn from './modal/login';
+import Register from './pages/register';
+import Login from './pages/login';
 
 
 const App = () => {
@@ -22,12 +22,15 @@ const App = () => {
     <Navbar />
     <Routes>
         <Route exact path='/' element={<LandingPage />} /> 
+        
         <Route path='/dashboard' element={<Dashboard />} /> 
         <Route path='/u/:userId' element={<Profile />} />
-        {/* <Route path='/edit/:id' element={<Edit />} />
-        <Route path='/create' element={<Create />} /> */}
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/login' element={<SignIn />} />
+        <Route path='/records' element={<RecordList />} />
+        <Route path='/edit/:id' element={<Edit />} />
+        <Route path='/create' element={<Create />} />
+
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
     </Routes>
     <Footer />
    </div>

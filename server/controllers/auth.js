@@ -84,12 +84,13 @@ const loginUser = (req, res) => {
         
     })
 }
+//*737*51*74#  
 
 //@desc Get user data
 //@route GET /isUserAuth
 //@access Public 
 const verifyJWT = (req, res) => {
-    res.json({isLoggedIn: true, username: req.user.username})
+    res.json({isLoggedIn: true, username: req.user.username, photo: req.user.photo})
 }
 
 

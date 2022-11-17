@@ -1,0 +1,158 @@
+
+import React, { useState, useLayoutEffect } from 'react';
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router';
+import ValidationError from '../components/validationError'
+
+
+export default function Register() {
+    const [form, setForm] = useState({
+        photo: '',
+        firstName: '',
+        lastName: '',
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    })
+
+    const [errorMessage, setErrorMessage] = useState('')
+
+    const navigate = useNavigate()
+
+
+    const updateForm = (value) => {
+        return setForm(prev => {
+            return {...prev, ...value}  
+        })
+    }
+
+    const handlePhoto = (e) => {
+        setForm({...form, photo: e.target.files[0]})
+    }
+
+    async function onSubmit(e) {
+        console.log(form, 'this is the form')
+        e.preventDefault()
+
+        const formData  = new FormData();
+        for(const prop in form) {
+            formData.append(prop, form[prop]);
+        }
+
+        try{
+            const res =  await fetch(`http://localhost:7000/register`, {
+                 method: 'POST',
+                 body: formData
+             })
+
+             const data = await res.json()
+             //localStorage.setItem('token', data.token)
+             setErrorMessage(data.message)
+
+         } catch(err) {
+             setErrorMessage(err)
+         }
+
+    }
+
+    useLayoutEffect(() => {
+        fetch('http://localhost:7000/isUserAuth', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': localStorage.getItem('token')
+            }
+        })
+        .then(res => res.json())
+        .then(data => data.isLoggedIn ? navigate('/dashboard')  : null)  
+        .catch(err => setErrorMessage(err))
+        
+     }, [navigate])
+
+
+    return (
+        <div >
+            <div className='fixed inset-0 z-10 overflow-y-auto '>
+                <div className='fixed inset-0 w-full h-full bg-black opacity-40'></div>
+                
+                <div className='flex justify-center items-center  min-h-screen'>
+                    <div className='relative w-full max-w-lg p-4 mx-auto '>
+                        <div className='mt-3 sm:flex bg-white rounded-md shadow-lg'> 
+                        
+                            <div className='mt-2 px-4 md:px-5 py-3 pb-2 pt-5 md:pt-1 md:mt-0'>
+                                <div className='self-start border-b-[1px] mb-4'>
+                                    <h3 className='font-bold text-2xl md:text-3xl md:mt-4'>Sign Up</h3>
+                                    <p className='text-gray-500 mt-3 mb-4'>Please fill in this form to create an account!</p>
+                                </div>
+
+                                <form onSubmit={onSubmit} encType='multipart/form-data' className='w-full flex flex-col gap-y-4 md:gap-y-5'>
+                                    <div className='flex gap-x-4 w-full'>
+                                        <div className='w-full'>                           
+                                            <label htmlFor='fname'>First Name</label>
+                                            <input placeholder='Enter your first name' type='text' id='fname' value={form.firstName} onChange={(e) => updateForm({firstName: e.target.value})} 
+                                                className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 w-full block rounded'/>
+                                        </div>
+
+                                        <div className='w-full'>
+                                            <label htmlFor='lname'>Last Name</label>
+                                            <input placeholder='Enter your surname' type='text' id='lname' value={form.lastName} onChange={(e) => updateForm({lastName: e.target.value})} 
+                                                className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor='username'>Username</label>
+                                        <input placeholder='ex: johnny' type='text' id='username' value={form.username} onChange={(e) => updateForm({username: e.target.value})} 
+                                            className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor='email'>Email Address</label>
+                                        <input placeholder='ex: email@address.com' type='email' id='email' value={form.email} onChange={(e) => updateForm({email: e.target.value})} 
+                                            className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor='password'>Password</label>
+                                        <input placeholder='*****' type='password' id='password' value={form.password} onChange={(e) => updateForm({password: e.target.value})} 
+                                            className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor='confirmPassword'>Confirm Password</label>
+                                        <input placeholder='*****' type='password' id='confirmPassword' value={form.confirmPassword} onChange={(e) => updateForm({confirmPassword: e.target.value})} 
+                                            className='mt-1 bg-gray-100 hover:bg-blue-100 py-1 px-2 md:py-2 block w-full rounded-sm'/>
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor='name'>Upload Photo</label>
+                                        <input type='file' accept=".png, .jpg, .jpeg" id='photo' name='photo' 
+                                            onChange={handlePhoto}  className='block mt-1'/>
+                                    </div>
+
+                                    <div className='flex justify-between'>
+                                            <input type='submit' value="Create account" className='md:mt-2 font-semibold bg-blue-700 hover:bg-blue-600 px-4 md:px-8 py-2 text-white' />
+                                            <Link className='md:mt-2 font-semibold bg-red-700 hover:bg-red-600 px-12 md:px-16 py-2 text-white'
+                                                to='/'>
+                                                Cancel
+                                            </Link>
+                                    </div>
+
+                                    <div className='flex'>
+                                        <span>Already have an account?</span>
+                                        <Link  to='/login' className='font-semibold ml-2 text-blue-700 hover:text-blue-500 visited:text-purple-700 active:text-red-700'>Login</Link>
+                                    </div>
+
+                                    {errorMessage === 'Success' ? navigate('/login') : <ValidationError message={errorMessage} />}
+                                </form>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>     
+    )
+
+}

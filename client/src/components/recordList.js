@@ -114,7 +114,7 @@ export default function RecordList() {
 
             <SearchRecord records={records} setRecords={setRecords} />
             
-            <div className='container mx-auto shadow-sm overflow-x-scroll rounded-md'>
+            <div className='container mx-auto shadow-sm overflow-x-scroll lg:overflow-none rounded-md w-full'>
                 <table className='min-w-full leading-normal'>
                     <thead>
                         <tr className='text-left bg-red-800 text-white tracking-wide w-full'>

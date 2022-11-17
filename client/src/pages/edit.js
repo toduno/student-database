@@ -106,7 +106,7 @@ export default function Edit() {
     
     return (
         <div className='flex flex-col md:flex-row'>
-            <div className='flex md:flex-col md:w-[50%] md:h-screen justify-center items-center py-20 md:py-14  lg:py-20 bg-yellow-100 gap-y-3'>
+            <div className='flex md:flex-col md:w-[50%] md:h-screen justify-center items-center py-20 md:py-14  lg:py-20 bg-red-100 gap-y-3'>
                 <div className="w-auto m-auto h-full rotate-2 z-20">
                     <p className="w-auto m-auto bg-red-600 text-white text-2xl font-semibold p-6 md:p-8 lg:p-14 pb-6 text-left shadow-xl">"Knowledge isn't power until it is applied." 
                         <small className='block text-xs text-right mt-6'>~ Dale Carnegie</small>
