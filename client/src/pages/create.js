@@ -109,7 +109,7 @@ export default function Create() {
 
             <div className='flex flex-col items-center justify-center px-2 md:pl-7 py-7 md:pt-4 md:pb-8 md:w-[50%]'>
                 <div className='self-start'>
-                    <h3 className='font-bold text-2xl md:text-3xl mb-6  md:mt-4'>Update Record</h3>
+                    <h3 className='font-bold text-2xl md:text-3xl mb-6  md:mt-4'>Create Record</h3>
                 </div>
 
                 <form onSubmit={onSubmit} encType='multipart/form-data' className='w-full flex flex-col gap-y-4 md:gap-y-5'>
