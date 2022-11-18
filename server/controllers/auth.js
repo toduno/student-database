@@ -84,28 +84,17 @@ const loginUser = (req, res) => {
         
     })
 }
-//*737*51*74#  
 
-//@desc Get user data
-//@route GET /isUserAuth
-//@access Public 
+//@desc Authorize a User
+//@route POST /isUserAuth
+//@access Private 
 const verifyJWT = (req, res) => {
     res.json({isLoggedIn: true, username: req.user.username, photo: req.user.photo})
 }
 
 
-const getUser = async(req, res) => {
-    try{
-        const userList = await User.find()
-        res.status(200).json(userList)
-    } catch(err) {
-        res.status(400).json('Error: ' + err)
-    }
-}
-
 module.exports = {
     createUser,
     loginUser,
-    verifyJWT,
-    getUser
+    verifyJWT
 }

@@ -16,6 +16,7 @@ app.use(cors(corsOptions))
 app.use(express.json())
 app.use(require('./routes/record.js'))
 app.use(require('./routes/auth.js'))
+app.use('/u', require('./routes/user.js'))
 app.use('/uploads', express.static('uploads'))
 
 
