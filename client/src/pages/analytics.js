@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2"
+import {Chart as ChartJS} from 'chart.js/auto' // react-chartjs-2 needs chart.js for it to work. Always import chartjs along.
 
 const Analytics = () => {
     const [records, setRecords] = useState([])
-    const [chartData, setChartData] = useState([])
+    const [chartData, setChartData] = useState({})
     
     
     useEffect(() => {
@@ -21,30 +22,30 @@ const Analytics = () => {
             getRecords()
     
             
-            setChartData({
-                labels: ['students'],
+            setChartData(
+                {
+                labels: ['Jan', 'Feb', 'March'], //the lenght of the labels array should be more than one else you won't see the line
                 datasets: [
                     {
                         label: "look",
-                        data: records,
+                        data: [1,2,3],
                         backgroundColor: ["red"],
                         borderRadius: 4
                     }
                 ]
-            })
+            }
+        )
         }
         chart()
 
         return
-    }, [records]) 
+    }, []) // Because you are modifing records in the useEffect, don't include record in this array else it will cause infinite loop
 
     return (
         <div>
             <Line
-            data={chartData}
+                data={chartData}
             />
-            
-        
         </div>
     )
 }

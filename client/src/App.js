@@ -14,6 +14,7 @@ import Create from "./pages/create";
 
 import Register from './pages/register';
 import Login from './pages/login';
+import Analytics from "./pages/analytics";
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
 
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/analytics' element={<Analytics />} />
     </Routes>
     <Footer />
    </div>
