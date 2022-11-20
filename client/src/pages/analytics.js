@@ -9,46 +9,49 @@ const Analytics = () => {
     
     
     useEffect(() => {
-        const chart = () => {
-            async function getRecords() {
-                //get the response
-                const response = await fetch(`http://localhost:7000/record/`)
-                if(!response.ok) return window.alert(`An error has occurred: ${response.statusText}`)
-    
-                const records = await response.json()
-               
-                //set the records state with the response data
-                setRecords(records)
-            }
-            getRecords()
-    
-            
-            setChartData(
-                {
-                labels: ['Jan', 'Feb', 'March'], //the length of the labels array should be more than one else you won't see the line
-                datasets: [
-                    {
-                        label: "look",
-                        data: [1,2,3],
-                        backgroundColor: ["red"],
-                        borderRadius: 4
-                    }
-                ]
-            }
-        )
-        }
-        chart()
+        // async function getRecords() {
+        //     //get the response
+        //     const response = await fetch(`http://localhost:7000/record/`)
+        //     if(!response.ok) return window.alert(`An error has occurred: ${response.statusText}`)
 
-        return
+        //     const records = await response.json()
+            
+        //     //set the records state with the response data
+        //     setRecords(records)
+        // }
+        // getRecords()
+
+        
+        setChartData((prev) => {
+            return {
+                ...prev,
+                ...{
+                    labels: ['Jan', 'Feb', 'March'], //the length of the labels array should be more than one else you won't see the line
+                    datasets: [
+                        {
+                            label: "look",
+                            data: [1,2,3],
+                            backgroundColor: ["red"],
+                            borderRadius: 4
+                        }
+                    ]
+                }
+            }
+        })
     }, []) // Because you are modifing records in the useEffect, 
     //don't include record in this array else it will cause infinite loop
 
+    console.log({chartData})
     return (
         <div>
-            Hello World
-            <Line
-                data={chartData}
-            />
+            {
+                Object.keys(chartData).length ? 
+                    <Line
+                        datasetIdKey='id'
+                        data={chartData}
+                    /> 
+                    : null    
+            }
         </div>
     )
 }
