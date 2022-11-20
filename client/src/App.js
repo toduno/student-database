@@ -25,7 +25,7 @@ const App = () => {
         <Route exact path='/' element={<LandingPage />} /> 
         
         <Route path='/dashboard' element={<Dashboard />} /> 
-        <Route path='/u/:userId' element={<Profile />} />
+        <Route path='/u/:id' element={<Profile />} />
         <Route path='/records' element={<RecordList />} />
         <Route path='/edit/:id' element={<Edit />} />
         <Route path='/create' element={<Create />} />

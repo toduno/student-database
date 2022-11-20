@@ -64,7 +64,7 @@ const loginUser = (req, res) => {
                 }
                 jwt.sign(
                     payload,
-                    // process.env.PASSPORTSECRET,
+                    // process.env.JWT_SECRET,
                     'test',
                     {expiresIn: 86400},
                     (err, token) => {

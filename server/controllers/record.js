@@ -4,12 +4,13 @@ const studentRecordModel = require('../models/record')
 
 const getRecord = async(req, res) => {
     try{
-        const recordList = await studentRecordModel.find()
+        const recordList = await studentRecordModel.find() //{user: req.user.id}
         res.status(200).json(recordList)
     } catch(err) {
         res.status(400).json('Error: ' + err)
     }
 }
+
 
 const getRecordById = async(req, res) => {
     try{
@@ -24,6 +25,7 @@ const createRecord =  async(req, res) => {
     const socials = JSON.parse(req.body.socials)
 
     const newRecord = new studentRecordModel({
+        //user: req.user.id,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,

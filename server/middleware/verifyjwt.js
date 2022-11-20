@@ -6,7 +6,7 @@ const verifyjwt = (req, res, next) => {
     console.log(token)
 
     if (token) {
-        jwt.verify(token, 'test', (err, decoded) => {  // process.env.PASSPORTSECRET 
+        jwt.verify(token, 'test', (err, decoded) => {  // process.env.JWT_SECRET 
             if (err) return res.json({
                 isLoggedIn: false,
                 message: "Failed To Authenticate"

@@ -9,6 +9,7 @@ const {
     deleteRecord
 } = require('../controllers/record')
 const upload = require('../middleware/upload')
+//const verifyjwt = require('../middleware/verifyjwt')
 
 router.get('/record', getRecord)
 router.get('/record/:id', getRecordById)

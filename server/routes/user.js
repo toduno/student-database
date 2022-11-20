@@ -8,9 +8,10 @@ const {
     deleteUser
 } = require('../controllers/user')
 const upload = require('../middleware/upload')
+const verifyjwt = require('../middleware/verifyjwt')
 
 
-router.get('/', getUser)
+router.get('/', verifyjwt, getUser)
 router.get('/:id', getUserById)
 router.put('/update/:id', upload.single('photo'), updateUser)
 router.delete('/:id', deleteUser)

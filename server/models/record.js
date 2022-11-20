@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
 const studentRecordSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
     photo: {
         type: String
     },
@@ -42,6 +47,7 @@ const studentRecordSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-})
+}, {timestamps: true}
+)
 
 module.exports = mongoose.model('StudentList', studentRecordSchema)
